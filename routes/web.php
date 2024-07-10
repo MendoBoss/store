@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfileController;
 
 // affichage produits
 Route::get('/',[ProductController::class, 'index'])->name('product');
-Route::get('/product/{id}',[ProductController::class, 'show'])->name('product.detail');
+Route::get('/product/{product}',[ProductController::class, 'show'])->name('product.detail');
 Route::get('/product/category/{id}',[ProductController::class, 'productByCategory'])->name('product.category');
 
 // geestion dasboard

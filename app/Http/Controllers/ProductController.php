@@ -14,19 +14,25 @@ class ProductController extends Controller
     public function index(){
         $categories = Category::all();
         // dd($categories);
-        $products = Product::orderBy('id','desc')->paginate(10);
+        $products = Product::orderBy('id','desc')->paginate(12);
         return view('product.products', compact('categories','products'));
     }
-     /***
+    /***
      *  detail -> show details of a product
      */
-    public function show($id){
-        return view('product.show');
+    public function show(Product $product){
+        $categories = Category::all();
+        $products = Product::where('category_id',$product->category_id)->inRandomOrder()->limit(4)->get();
+        // dd($products);
+        return view('product.show',compact('categories','product','products'));
     }
-     /***
+    /***
      *  byCat -> show products by categories
      */
     public function productByCategory($id){
-        return 'cat'.+$id;
+        $categories = Category::all();
+        $cat=Category::find($id);
+        $products = Product::where('category_id',$id)->orderBy('id','desc')->paginate(12);
+        return view('product.products', compact('categories','products','cat'));
     }
 }

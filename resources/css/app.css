@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.footer{
+    width: 100%;
+    height: 200px;
+}
+
+.hidden1024{
+    display:none;
+}
+@media only screen and (max-wiht:1024){
+    .hidden1024{
+        display:block;
+    }
+}
