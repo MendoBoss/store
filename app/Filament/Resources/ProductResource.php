@@ -34,7 +34,7 @@ class ProductResource extends Resource
                 ->relationship('category', 'name')
                 ->required(),
                 Forms\Components\FileUpload::make('images')->disk('public')
-                ->directory('images')
+                
             ]);
     }
 

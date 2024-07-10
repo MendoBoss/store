@@ -12,7 +12,7 @@
         <div class="w-5/6">
             @if (isset($cat))
                 {{-- <h1 class="sticky top-0 w-full text-center text-3xl pt-10 bg-white pb-5 z-10 ">{{$cat->name}}</h1> --}}
-                <img src="/images/{{$cat->image}}" alt="img" width="100%" class="h-96 w-4/5 px-6 pt-10 object-cover mx-auto">
+                <img src="/images/storage/{{$cat->image}}" alt="img" width="100%" class="h-96 w-4/5 px-6 pt-10 object-cover mx-auto">
             @endif
             <x-product-card :products="$products" />
             {{-- lien de pagination --}}

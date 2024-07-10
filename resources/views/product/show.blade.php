@@ -9,7 +9,7 @@
             <div class="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:items-center lg:gap-x-8">
               <div class="relative aspect-h-3 aspect-w-2  rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
                 <span class="absolute -top-2 -right-3 px-2 py-1 rounded-lg bg-indigo-400 text-gray-50">{{$product->category->name}}</span>
-                <img src="/images/{{$product->images}}" width="100%" alt="Back of women&#039;s Basic Tee in black." class="object-cover object-center rounded-lg">
+                <img src="/images/storage/{{$product->images}}" width="100%" alt="Back of women&#039;s Basic Tee in black." class="object-cover object-center rounded-lg">
               </div>
               <div class="sm:col-span-8 lg:col-span-7">
                 <h2 class="text-3xl font-medium text-gray-900 sm:pr-12">{{$product->name}}</h2>
