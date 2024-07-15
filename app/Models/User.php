@@ -4,8 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Panel;
+use App\Models\Commande;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -53,6 +55,13 @@ class User extends Authenticatable implements FilamentUser
     {
         return str_ends_with($this->role, 'admin');
     }
+
+    
+    public function commandes(): HasMany {
+        return $this->hasMany(Commande::class);
+    }
+
+    
     // public function canAccessPanel(Panel $panel): bool
     // {
     //     if ($panel->getId() === 'admin') {

@@ -20,10 +20,10 @@
                 </section>
 
                 <section aria-labelledby="options-heading" class="mt-11">
-                  <form>
-                    <button type="submit" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Ajouter au panier</button>
-                  </form>
-                  <div class="">
+                  {{-- <form action="{{route('panier.ajouter',$product)}}" method="get"> --}}
+                    <a href="{{route('panier.ajouter',$product)}}" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Ajouter au panier</a>
+                  {{-- </form> --}}
+                  <div>
                     <h3 class="pl-8 pt-11 font-semibold">Produit similaires :</h3>
                       <x-product-card :products="$products"/>
                   </div>
