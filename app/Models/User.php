@@ -53,4 +53,17 @@ class User extends Authenticatable implements FilamentUser
     {
         return str_ends_with($this->role, 'admin');
     }
+    // public function canAccessPanel(Panel $panel): bool
+    // {
+    //     if ($panel->getId() === 'admin') {
+    //         if ($this->role === 'admin') {
+    //             return true;
+    //         } else {
+    //             // Afficher un message d'erreur ou lever une exception
+    //             abort(403, 'Accès refusé : Vous devez être administrateur pour accéder à ce panneau.');
+    //     }
+    //     }
+    //     // Si ce n'est pas le panel admin, tout le monde peut y accéder
+    //     return redirect()->back();
+    // }
 }
