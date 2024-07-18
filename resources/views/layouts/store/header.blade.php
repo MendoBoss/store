@@ -8,7 +8,7 @@
         <ul class="flex w-full justify-center py-7 gap-10 ">
             <li><a href="{{route('product')}}">Accueil</a> </li>
             <li><a href="{{route('dashboard')}}">Mon compte</a> </li>
-            <li><a href="">Panier</a> </li>
+            <li><a href="{{route('panier.lister')}}">Panier</a> </li>
         </ul>
     </div>
 

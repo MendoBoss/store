@@ -4,6 +4,8 @@
   <div class="w-1/6">
       <x-sidebar :categories="$categories"/>
   </div>
+  {{-- {{$product->isFavotites}} --}}
+  {{-- @dd($product->favorites) --}}
   <div class="w-5/6">
         <div class="flex mx-auto w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-7xl ">
             <div class="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:items-center lg:gap-x-8">
@@ -13,6 +15,15 @@
               </div>
               <div class="sm:col-span-8 lg:col-span-7">
                 <h2 class="text-3xl font-medium text-gray-900 sm:pr-12">{{$product->name}}</h2>
+                @if (isset($favorite))
+                  <a href="{{route('favorite.ajouter',$product)}}" class="flex items-center gap-2 py-4 text-xs font-semibold">
+                    <img src="/images/iconmonstr-heart-filled-48.png" alt="favorite" width="25px"><span> Retirer des favoris </span> 
+                  </a>
+                @else
+                  <a href="{{route('favorite.ajouter',$product)}}" class="flex items-center gap-2 py-4 text-xs font-semibold">
+                    <img src="/images/iconmonstr-heart-filled-48 (1).png" alt="favorite" width="25px"><span> Ajouter aux favoris </span> 
+                  </a>
+                @endif
 
                 <section aria-labelledby="information-heading" class="mt-5">
                   <p class="font-medium text-gray-900">{{$product->price}} €</p>

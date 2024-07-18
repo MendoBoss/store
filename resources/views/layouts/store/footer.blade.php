@@ -1,4 +1,4 @@
-<footer class="relative footer bg-blue-50">
+<footer class="relative bottom-0 footer bg-blue-50">
 
     <div class="flex h-full justify-between px-10 py-5 ">
         <div class="flex flex-col">
