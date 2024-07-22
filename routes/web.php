@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\FavoriteController;
 
 // Route::get('/', function () {
@@ -19,6 +20,11 @@ Route::get('/product/category/{id}',[ProductController::class, 'productByCategor
 Route::middleware('auth')->group(function () {
     Route::get('/favorite', [FavoriteController::class, 'index'])->name('favorite.lister');
     Route::get('/favorite/{product}', [FavoriteController::class, 'ajouter'])->name('favorite.ajouter');
+});
+// gestion des commandes
+Route::middleware('auth')->group(function () {
+    Route::get('/commande/create', [CommandeController::class, 'create'])->name('commande.ajouter');
+    Route::get('/commande', [CommandeController::class, 'index'])->name('commande.lister');
 });
 
 // geestion dasboard

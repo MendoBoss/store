@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Category;
 use App\Models\Favorite;
+use App\Models\CommandeItem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,5 +32,8 @@ class Product extends Model
 
     public function paniers():HasMany {
         return $this->hasMany(Panier::class);
+    }
+    public function commandeItems():HasMany {
+        return $this->belongsTo(CommandeItem::class);
     }
 }
