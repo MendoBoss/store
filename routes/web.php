@@ -24,8 +24,17 @@ Route::middleware('auth')->group(function () {
 // gestion des commandes
 Route::middleware('auth')->group(function () {
     Route::get('/commande/create', [CommandeController::class, 'create'])->name('commande.ajouter');
+    Route::get('/commande/success', [CommandeController::class, 'success'])->name('commande.success');
     Route::get('/commande', [CommandeController::class, 'index'])->name('commande.lister');
 });
+// gestion des stripe
+Route::middleware('auth')->group(function () {
+    // Route::get('/commande/create', [CommandeController::class, 'create'])->name('commande.ajouter');
+    // Route::get('/commande', [CommandeController::class, 'index'])->name('commande.lister');
+});
+
+// Webhook stripe
+Route::post('/commande/webhook',[CommandeController::class,'webhook'])->name('commande.webhook');
 
 // geestion dasboard
 Route::get('/dashboard', function () {
