@@ -1,5 +1,5 @@
 
-<header class="bg-blue-50 shadow-md flex justify-between px-10">
+<header class="sticky top-0 z-50 bg-blue-50 shadow-md flex justify-between px-10">
 
     <div>
         <img src="/images/PrestaBoutique.png" alt="logo" width="80px">

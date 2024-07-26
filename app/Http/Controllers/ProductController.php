@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Panier;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Favorite;
@@ -14,6 +15,7 @@ class ProductController extends Controller
      */
     public function index(){
         $categories = Category::all();
+        // dd(Panier::all());
         $favorites=null;
         if(isset(Auth()->user()->id)){
             $favorites = Favorite::where('user_id',Auth()->user()->id)->get();

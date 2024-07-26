@@ -1,4 +1,4 @@
-<div class="sticky top-0 pl-5 pt-10">
+<div class="sticky top-10 pl-5 pt-10">
     <h3 class="underline sha">Categories :</h3>
 
     <ul class="flex flex-col gap-4 pl-5 justify-evenly my-5">
