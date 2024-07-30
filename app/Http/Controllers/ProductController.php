@@ -15,8 +15,7 @@ class ProductController extends Controller
      */
     public function index(){
         $categories = Category::all();
-        // dd(Panier::all());
-        $favorites=null;
+        $favorites=[];
         if(isset(Auth()->user()->id)){
             $favorites = Favorite::where('user_id',Auth()->user()->id)->get();
         }
@@ -28,10 +27,13 @@ class ProductController extends Controller
      */
     public function show(Product $product){
         $categories = Category::all();
-        $favorite = Favorite::where('user_id',Auth()->user()->id)->where('product_id',$product->id)->first();
+        $favorite = [];
+        if(Auth()->user()!=null){
+            $favorite = Favorite::where('user_id',Auth()->user()->id)->where('product_id',$product->id)->first();
+        }
         $products = Product::where('category_id',$product->category_id)->inRandomOrder()->limit(4)->get();
         // dd($favorite);
-        return view('product.show',compact('categories','product','products','favorite'));
+        return view('product.details',compact('categories','product','products','favorite'));
     }
     /***
      *  byCat -> show products by categories
@@ -40,7 +42,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $cat=Category::find($id);
         $products = Product::where('category_id',$id)->orderBy('id','desc')->paginate(12);
-        return view('product.products', compact('categories','products','cat'));
+        return view('product.categories', compact('categories','products','cat'));
     }
 
  

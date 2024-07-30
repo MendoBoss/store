@@ -21,6 +21,7 @@
     <!-- Main Css -->
     <link href="https://shreethemes.in/cartzio/layouts/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
     <link href="https://shreethemes.in/cartzio/layouts/assets/css/tailwind.min.css" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/feather-icons"></script>
 
 </head>
     
@@ -32,7 +33,7 @@
         
         @include('layouts.shop.footer')
 
-        <!-- Switcher -->
+        {{-- <!-- Switcher -->
         <div class="fixed top-1/4 -left-2 z-50">
             <span class="relative inline-block rotate-90">
                 <input type="checkbox" class="checkbox opacity-0 absolute" id="chk">
@@ -43,7 +44,7 @@
                 </label>
             </span>
         </div>
-        <!-- Switcher -->
+        <!-- Switcher --> --}}
 
         <!-- Back to top -->
         <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-orange-500 text-white justify-center items-center"><i class="mdi mdi-arrow-up"></i></a>
@@ -54,6 +55,7 @@
         <script src="https://shreethemes.in/cartzio/layouts/assets/libs/feather-icons/feather.min.js"></script>
         <script src="https://shreethemes.in/cartzio/layouts/assets/js/plugins.init.js"></script>
         <script src="https://shreethemes.in/cartzio/layouts/assets/js/app.js"></script>
+        <script>feather.replace();</script>
         <!-- JAVASCRIPTS -->
     </body>
 </html>

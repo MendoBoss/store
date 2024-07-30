@@ -1,7 +1,7 @@
 @extends('layouts.shop.shop')
 @section('content')
     {{-- <h1 class="text-3xl">index</h1> --}}
-    <section class="relative md:flex table w-full items-center md:h-screen py-36  bg-center bg-no-repeat bg-cover" style="background-image: url('/images/StockCake-Fashion Show Elegance_1721961364.jpg')">
+    {{-- <section class="relative md:flex table w-full items-center md:h-screen py-36  bg-center bg-no-repeat bg-cover" style="background-image: url('/images/StockCake-Fashion Show Elegance_1721961364.jpg')">
         <div class="absolute inset-0 bg-gradient-to-t to-transparent via-slate-900/50 from-slate-900/90"></div>
         <div class="container relative">
             <div class="grid grid-cols-1 justify-center">
@@ -16,12 +16,11 @@
                 </div>
             </div><!--end grid-->
         </div><!--end container-->
-    </section><!--end section-->
+    </section><!--end section--> --}}
 
-    <div id="articles"></div>      
-    <x-categoryList />
+    {{-- <x-categoryList /> --}}
 
-    <x-productList :products="$products"/>
+    <x-category-show :products="$products"/>
     
         <!-- Back to top -->
         <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-orange-500 text-white justify-center items-center"><i data-feather="arrow-up"></i></a>

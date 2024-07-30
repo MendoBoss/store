@@ -45,13 +45,40 @@
       <img src="/images/storage/{{$product->images}}" class="group-hover:scale-110 duration-500" alt="">
 
       <div class="absolute -bottom-20 group-hover:bottom-3 start-3 end-3 duration-500">
-          <a href="shop-cart.html" class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-slate-900 text-white w-full rounded-md">Ajouter au panier</a>
+          <a href="{{route('panier.ajouter',$product)}}" class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-slate-900 text-white w-full rounded-md">Ajouter au panier</a>
       </div>
 
       <ul class="list-none absolute top-[10px] end-4 opacity-0 group-hover:opacity-100 duration-500 space-y-1">
-          <li><a href="javascript:void(0)" class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"><i data-feather="heart" class="size-4"></i></a></li>
-          <li class="mt-1"><a href="shop-item-detail.html" class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"><i data-feather="eye" class="size-4"></i></a></li>
-          <li class="mt-1"><a href="javascript:void(0)" class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"><i data-feather="bookmark" class="size-4"></i></a></li>
+
+        @php
+          $isFavorite=false;
+          if($favorites==[]){$isFavorite=false;}
+        @endphp
+        @auth
+          @forelse ($favorites as $favorite)
+              @if ($favorite->product_id==$product->id)
+                @php
+                  $isFavorite=true;
+                @endphp
+              @endif
+              {{-- @break --}}
+              @empty
+              @php
+                  $isFavorite=false;
+                  @endphp
+          @endforelse
+        @endauth
+    
+        @if ($isFavorite==true)
+          <li><a href="{{route('favorite.ajouter',$product)}}" class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-orange-500 hover:bg-slate-900 hover:text-orange-500 shadow"><i data-feather="heart" class="size-4"></i></a></li>
+          
+        @else
+          <li><a href="{{route('favorite.ajouter',$product)}}" class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"><i data-feather="heart" class="size-4"></i></a></li>
+          
+        @endif   
+
+          <li class="mt-1"><a href="{{route('product.detail',$product)}}" class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"><i data-feather="eye" class="size-4"></i></a></li>
+          {{-- <li class="mt-1"><a href="javascript:void(0)" class="size-10 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-center rounded-full bg-white text-slate-900 hover:bg-slate-900 hover:text-white shadow"><i data-feather="bookmark" class="size-4"></i></a></li> --}}
       </ul>
 
       <ul class="list-none absolute top-[10px] start-4">

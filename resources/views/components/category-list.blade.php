@@ -1,5 +1,5 @@
 <!-- Start Hero -->
-<section class="relative md:pt-32">
+<section class="relative md:pt-10">
     <div class="container-fluid relative">
         <div class="container-fluid relative mt-6 lg:mx-6 mx-3">
             <div class="grid xl:grid-cols-6 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">

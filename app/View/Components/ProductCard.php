@@ -3,8 +3,9 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\Favorite;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class ProductCard extends Component
 {
@@ -21,6 +22,10 @@ class ProductCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.product-card');
+        $favorites=null;
+        if(isset(Auth()->user()->id)){
+            $favorites = Favorite::where('user_id',Auth()->user()->id)->get();
+        }
+        return view('components.product-card',compact('favorites'));
     }
 }
