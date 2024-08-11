@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Panel;
+use App\Models\Panier;
 use App\Models\Commande;
 use App\Models\Favorite;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +24,14 @@ class User extends Authenticatable implements FilamentUser
      */
     protected $fillable = [
         'name',
+        'nom',
+        'image',
+        'date_naiss',
+        'phone',
+        'address',
+        'cp',
+        'state',
+        'country',
         'email',
         'password',
         'role',
@@ -58,6 +67,10 @@ class User extends Authenticatable implements FilamentUser
     }
 
     
+    public function paniers(): HasMany {
+        return $this->hasMany(Panier::class);
+    }
+
     public function commandes(): HasMany {
         return $this->hasMany(Commande::class);
     }

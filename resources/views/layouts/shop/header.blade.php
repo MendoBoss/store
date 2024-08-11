@@ -51,7 +51,7 @@
                                         $total=0;
                                     @endphp
     
-                                    @forelse (App\Models\Panier::where('user_id',Auth()->user()->id) as $rowpanier)
+                                    @forelse (App\Models\Panier::where('user_id',Auth()->user()->id)->get() as $rowpanier)
                                         <li>
                                             <a href="#" class="flex items-center justify-between py-1.5 px-4">
                                                 <span class="flex items-center">
@@ -122,7 +122,7 @@
                                     <li class="py-1.5 px-4">
                                         <span class="text-center block">
                                             <a href="{{route('panier.lister')}}" class="py-[5px] px-4 inline-block font-semibold tracking-wide align-middle duration-500 text-sm text-center rounded-md bg-orange-500 border border-orange-500 text-white">Panier</a>
-                                            <a href="javascript:void(0)" class="py-[5px] px-4 inline-block font-semibold tracking-wide align-middle duration-500 text-sm text-center rounded-md bg-orange-500 border border-orange-500 text-white">Commander</a>
+                                            <a href="{{route('commande.ajouter')}}" class="py-[5px] px-4 inline-block font-semibold tracking-wide align-middle duration-500 text-sm text-center rounded-md bg-orange-500 border border-orange-500 text-white">Commander</a>
                                         </span>
                                         {{-- <p class="text-sm text-slate-400 mt-1">*T&C Apply</p> --}}
                                     </li>
@@ -165,7 +165,7 @@
                                     <!-- Switcher -->
                                 </li>
                                 <li>
-                                    <a href="{{route('dashboard')}}" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="user" class="h-4 w-4 me-2"></i>Mon compte</a>
+                                    <a href="{{route('monCompte')}}" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="user" class="h-4 w-4 me-2"></i>Mon compte</a>
                                 </li>
                                 <li>
                                     <a href="route('profile.edit')" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Profil</a>
@@ -207,7 +207,7 @@
 
                 
 
-                        <li><a href="contact.html" class="sub-menu-item">Contact</a></li>
+                        <li><a href="{{route('contact.affiche')}}" class="sub-menu-item">Contact</a></li>
                     </ul><!--end navigation menu-->
                 </div><!--end navigation-->
             </div><!--end container-->

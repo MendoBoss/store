@@ -3,7 +3,7 @@
 <html lang="en" class="light scroll-smooth" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title>Cartzio - Fashion Store eCommerce Tailwind CSS Landing Template</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Fashion Store eCommerce Tailwind CSS Landing Template" name="description">
     <meta content="Shop, Fashion, eCommerce, Cart, Shop Cart, tailwind css, Admin, Landing" name="keywords">

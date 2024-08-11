@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Stripe\Stripe;
 use App\Models\Panier;
+use App\Models\Product;
 use App\Models\Commande;
 use Stripe\StripeClient;
 use App\Models\CommandeItem;
@@ -25,6 +26,10 @@ class CommandeController extends Controller
             'user_id'=>Auth()->user()->id,
             'numero'=>0,
             'total'=>0,
+            'address'=>Auth()->user()->address,
+            'cp'=>Auth()->user()->cp,
+            'state'=>Auth()->user()->state,
+            'country'=>Auth()->user()->country,
         ]);
         $total=0;
         foreach($panier as $rowPanier){
@@ -45,7 +50,7 @@ class CommandeController extends Controller
             $total = $total+($price*$quantite);
 
             // mise a jour du total de la commande 
-            $commande->update(['numero'=>9999,'total'=>$total,]);
+            $commande->update(['numero'=>9999,'total'=>$total+($total*0.085),]);
             $commande->save();
         }
 
@@ -53,9 +58,38 @@ class CommandeController extends Controller
         Panier::where('user_id',Auth()->user()->id)->delete();
 
         // redirection vers la fonction stripe
+        $UrlPaiement = $this->stripeCheckout(round($total+($total*0.085),2),$commande->id);
+        return redirect($UrlPaiement);
+    }
+    // commande directe
+    public function one(Product $product, Request $request){
+        $product=Product::find($request->product);
+        // dd($product->id);
+        $total=round(($product->price*$request->quantite)+(($product->price*$request->quantite)*0.085),2);
+        // creation de la commande
+        $commande = Commande::create([
+            'user_id'=>Auth()->user()->id,
+            'numero'=>0,
+            'total'=>$total,
+            'address'=>Auth()->user()->address,
+            'cp'=>Auth()->user()->cp,
+            'state'=>Auth()->user()->state,
+            'country'=>Auth()->user()->country,
+        ]);
+        
+        // ajout dans la table commande item
+        CommandeItem::create([
+            'commande_id'=>$commande->id,
+            'product_id'=>$product->id,
+            'quantite'=>$request->quantite,
+            'price'=>$product->price,
+        ]);
+        
+        // redirection vers la fonction stripe
         $UrlPaiement = $this->stripeCheckout($total,$commande->id);
         return redirect($UrlPaiement);
     }
+    
 
     public function index(){
 
@@ -114,7 +148,8 @@ class CommandeController extends Controller
             $commande->update(['numero'=>$session->payment_intent]);
             $commande->save();
         }
-        return redirect(route('commande.lister'));
+        // return redirect(route('commande.lister'));
+        return view('commande.details',compact('commande'));
     }
 
     public function webhook(Request $resquest){
@@ -124,5 +159,11 @@ class CommandeController extends Controller
         //     $commande->save();
         // }
         return 'ok';
+    }
+
+    // afficher details d'une commande
+    public function details(Commande $commande){
+
+        return view('commande.details',compact('commande'));
     }
 }

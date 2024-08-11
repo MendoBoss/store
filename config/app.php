@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => 'Murilo Boutique',
+    // 'name' => env('APP_NAME', 'laravel'),
 
     /*
     |--------------------------------------------------------------------------

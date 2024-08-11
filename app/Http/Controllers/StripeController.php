@@ -18,7 +18,7 @@ class StripeController extends Controller
                 [
                     'price_data'  => [
                         'product_data' => [
-                            'name' => $request->product,
+                            'name' => $request->product->name,
                         ],
                         'unit_amount'  => 100 * $request->price,
                         'currency'     => 'USD',

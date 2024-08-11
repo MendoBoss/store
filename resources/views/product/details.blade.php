@@ -68,64 +68,52 @@
                             </li>
                         </ul>
                     </div><!--end content-->
+                    <div>
+                        <form method="POST" action="{{route('commande.one')}}">
+                            <h5 class="text-2xl font-semibold">{{$product->name}}</h5>
+                            <div class="mt-2">
+                                <span class="text-slate-400 font-semibold me-1">€ {{$product->price}} &nbsp; <del class="text-red-600">€ {{$product->price+($product->price*0.10)}}</del></span>
+    
+                                <ul class="list-none  text-orange-400 flex">
+                                    <li class="inline"><i data-feather="star"></i></li>
+                                    <li class="inline"><i data-feather="star"></i></li>
+                                    <li class="inline"><i data-feather="star"></i></li>
+                                    <li class="inline"><i data-feather="star"></i></li>
+                                    <li class="inline"><i data-feather="star"></i></li>
+                                    <li class="inline text-slate-400 font-semibold">4.8 (45)</li>
+                                </ul>
+                            </div>
+    
+                            <div class="mt-4">
+                                <h5 class="text-lg font-semibold">Description :</h5>
+                                <p class="text-slate-400 mt-2">{{$product->description}}</p>
+                            
+                            </div>
+    
+                            <div class="grid lg:grid-cols-2 grid-cols-1 gap-6 mt-4">
+                                <div class="flex items-center">
+                                    <h5 class="text-lg font-semibold me-2">Quantity:</h5>
+                                    <div class="qty-icons ms-3 space-x-0.5">
+                                        <div onclick="this.parentNode.querySelector('input[type=number]').stepDown()" id="moins" class="size-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white minus">-</div>
+                                        <input min="1" name="quantite" id="quantite" value="1" type="number" class="h-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white pointer-events-none w-16 ps-4 quantity">
+                                        <div onclick="this.parentNode.querySelector('input[type=number]').stepUp()" id="plus" class="size-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white plus">+</div>
+                                    </div>
+                                </div><!--end content-->
+                            </div><!--end grid-->
+                            <div class="mt-4 space-x-1 w-full">
+                            
+                                    @csrf
+                                    <input type="hidden" name="product" value="{{$product->id}}">
+                                    <input type="submit" class="py-2 px-5 w-full inline-block font-semibold tracking-wide align-middle text-base text-center bg-orange-500 text-white rounded-md mt-2 hover:bg-orange-600 cursor-pointer" value="Acheter">
+                                
+                            </div>
+                        </form><!--end content form-->
+                        <form method="get" action="{{route('panier.ajouter',$product)}}" class="mt-4 space-x-1 w-full">
+                            <input name="quantite2" id="quantite2"  value="1" type="hidden">
 
-                    <div class="">
-                        <h5 class="text-2xl font-semibold">{{$product->name}}</h5>
-                        <div class="mt-2">
-                            <span class="text-slate-400 font-semibold me-1">€ {{$product->price}} &nbsp; <del class="text-red-600">€ {{$product->price+($product->price*0.10)}}</del></span>
-
-                            <ul class="list-none  text-orange-400 flex">
-                                <li class="inline"><i data-feather="star"></i></li>
-                                <li class="inline"><i data-feather="star"></i></li>
-                                <li class="inline"><i data-feather="star"></i></li>
-                                <li class="inline"><i data-feather="star"></i></li>
-                                <li class="inline"><i data-feather="star"></i></li>
-                                <li class="inline text-slate-400 font-semibold">4.8 (45)</li>
-                            </ul>
-                        </div>
-
-                        <div class="mt-4">
-                            <h5 class="text-lg font-semibold">Description :</h5>
-                            <p class="text-slate-400 mt-2">{{$product->description}}</p>
-                        
-                        </div>
-
-                        <div class="grid lg:grid-cols-2 grid-cols-1 gap-6 mt-4">
-                            <div class="flex items-center">
-                                <h5 class="text-lg font-semibold me-2">Size:</h5>
-                                {{-- <div class="space-x-1">
-                                    <a href="" class="size-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white">S</a>
-                                    <a href="" class="size-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white">M</a>
-                                    <a href="" class="size-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white">L</a>
-                                    <a href="" class="size-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white">XL</a>
-                                </div> --}}
-                            </div><!--end content-->
-
-                            <div class="flex items-center">
-                                <h5 class="text-lg font-semibold me-2">Quantity:</h5>
-                                <div class="qty-icons ms-3 space-x-0.5">
-                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="size-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white minus">-</button>
-                                    <input min="1" name="quantity" value="1" type="number" class="h-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white pointer-events-none w-16 ps-4 quantity">
-                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="size-9 inline-flex items-center justify-center tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white plus">+</button>
-                                </div>
-                            </div><!--end content-->
-
-                            {{-- <div class="flex items-center">
-                                <h5 class="text-lg font-semibold me-2">Colors:</h5>
-                                <div class="space-x-2">
-                                    <a href="" class="size-6 rounded-full ring-2 ring-gray-200 dark:ring-slate-800 bg-red-600 inline-flex align-middle" title="Red"></a>
-                                    <a href="" class="size-6 rounded-full ring-2 ring-gray-200 dark:ring-slate-800 bg-orange-600 inline-flex align-middle" title="Orange"></a>
-                                    <a href="" class="size-6 rounded-full ring-2 ring-gray-200 dark:ring-slate-800 bg-slate-900 inline-flex align-middle" title="Black"></a>
-                                    <a href="" class="size-6 rounded-full ring-2 ring-gray-200 dark:ring-slate-800 bg-gray-300 inline-flex align-middle" title="Gray"></a>
-                                </div>
-                            </div><!--end content--> --}}
-                        </div><!--end grid-->
-
-                        <div class="mt-4 space-x-1">
-                            <a href="" class="py-2 px-5 inline-block font-semibold tracking-wide align-middle text-base text-center bg-orange-500 text-white rounded-md mt-2">Acheter</a>
-                            <a href="" class="py-2 px-5 inline-block font-semibold tracking-wide align-middle text-base text-center rounded-md bg-orange-500/5 hover:bg-orange-500 text-orange-500 hover:text-white mt-2">Ajouter au panier</a>
-                        </div>
-                    </div><!--end content-->
+                            <button  class="py-2 px-5 w-full inline-block font-semibold tracking-wide align-middle text-base text-center rounded-md bg-orange-500/10 hover:bg-orange-500 text-orange-500 hover:text-white mt-2">Ajouter au panier</button>
+                        </form>                        
+                    </div>
                 </div><!--end grid-->
                 
                 <div class="grid md:grid-cols-12 grid-cols-1 mt-6 gap-6">
@@ -325,7 +313,7 @@
                         </div>
                     </div>
                 </div><!--end grid-->
-            </div><!--end container-->
+            </div><!--end container -->
 
             
             <div class="container lg:mt-24 mt-16">
@@ -376,6 +364,29 @@
         <!-- Back to top -->
         <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-orange-500 text-white justify-center items-center"><i data-feather="arrow-up"></i></a>
         <!-- Back to top -->
+
+        <script>
+            // buttons
+            var plus = document.getElementById("plus");
+            var moins = document.getElementById("moins");
+            // inputs
+            var quantite = parseInt(document.getElementById("quantite").value);
+            var quantite2 = parseInt(document.getElementById("quantite2").value);
+            // var quantite2 = parseInt(document.getElementById("quantite2").value);
+            var quantite3 = document.getElementById("quantite2");
+
+            plus.addEventListener("click", (event)=>{
+                quantite+=1;
+                quantite3.setAttribute('value', quantite);
+                // alert(quantite2);
+            })
+            moins.addEventListener("click", (event)=>{
+                quantite-=1;
+                quantite3.setAttribute('value', quantite);
+                // alert(quantite2);
+            })
+
+        </script>
 {{-- 
         <!-- JAVASCRIPTS -->
         <script src="https://shreethemes.in/cartzio/layouts/assets/libs/tiny-slider/min/tiny-slider.js"></script>

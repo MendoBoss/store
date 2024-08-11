@@ -18,6 +18,10 @@ class Commande extends Model
         'user_id',
         'numero',
         'total',
+        'address',
+        'cp',
+        'state',
+        'country',
     ];
 
     public function user():BelongsTo {
@@ -25,6 +29,6 @@ class Commande extends Model
     }
 
     public function commandeItems():HasMany {
-        return $this->belongsTo(CommandeItem::class);
+        return $this->hasMany(CommandeItem::class);
     }
 }

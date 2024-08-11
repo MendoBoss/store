@@ -44,7 +44,7 @@
                                     <td class="p-4"><a href="{{route('panier.remove',$rowpanier)}}"><i data-feather="x-circle" class="text-orange-500"></i></a></td>
                                     <td class="p-4">
                                         <span class="flex items-center">
-                                            <img src="/images/storage/{{$rowpanier->product->images}}" class="rounded shadow dark:shadow-gray-800 w-12" alt="">
+                                            <a href="{{route('product.detail',$rowpanier->product)}}"><img src="/images/storage/{{$rowpanier->product->images}}" class="rounded shadow dark:shadow-gray-800 w-12" alt=""></a>
                                             <span class="ms-3">
                                                 <span class="block font-semibold">{{$rowpanier->product->name}}</span>
                                             </span>

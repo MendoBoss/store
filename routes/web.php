@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PanierController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommandeController;
@@ -11,7 +12,17 @@ use App\Http\Controllers\FavoriteController;
 //     return view('welcome');
 // });
 
+// mentions légales
+Route::get('/mentions-legales',function(){
+    return view('mentionslegales');
+})->name('mentionslegales');
 
+
+
+// gestion profile
+Route::middleware('auth')->group(function () {
+    Route::get('/profil',[ProfileController::class, 'show'])->name('monCompte');
+});
 // affichage produits
 Route::get('/',[ProductController::class, 'index'])->name('product');
 Route::get('/product/{product}',[ProductController::class, 'show'])->name('product.detail');
@@ -21,16 +32,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/favorite', [FavoriteController::class, 'index'])->name('favorite.lister');
     Route::get('/favorite/{product}', [FavoriteController::class, 'ajouter'])->name('favorite.ajouter');
 });
+// gestion des panier
+Route::middleware('auth')->group(function () {
+    Route::get('/panier', [PanierController::class, 'index'])->name('panier.lister');
+    Route::get('/panier/add/{product}', [PanierController::class, 'ajouter'])->name('panier.ajouter');
+    Route::get('/panier/remove/{panier}', [PanierController::class, 'remove'])->name('panier.remove');
+    Route::get('/panier/moins/{panier}', [PanierController::class, 'moins'])->name('panier.moins');
+});
 // gestion des commandes
 Route::middleware('auth')->group(function () {
     Route::get('/commande/create', [CommandeController::class, 'create'])->name('commande.ajouter');
+    Route::post('/commande/one', [CommandeController::class, 'one'])->name('commande.one');
     Route::get('/commande/success', [CommandeController::class, 'success'])->name('commande.success');
     Route::get('/commande', [CommandeController::class, 'index'])->name('commande.lister');
+    Route::get('/commande/details/{commande}', [CommandeController::class, 'details'])->name('commande.details');
 });
 // gestion des stripe
 Route::middleware('auth')->group(function () {
-    // Route::get('/commande/create', [CommandeController::class, 'create'])->name('commande.ajouter');
-    // Route::get('/commande', [CommandeController::class, 'index'])->name('commande.lister');
 });
 
 // Webhook stripe
@@ -48,13 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// gestion des panier
-Route::middleware('auth')->group(function () {
-    Route::get('/panier', [PanierController::class, 'index'])->name('panier.lister');
-    Route::get('/panier/add/{product}', [PanierController::class, 'ajouter'])->name('panier.ajouter');
-    Route::get('/panier/remove/{panier}', [PanierController::class, 'remove'])->name('panier.remove');
-    Route::get('/panier/moins/{panier}', [PanierController::class, 'moins'])->name('panier.moins');
-});
+// contact
+Route::get('/contact',[ContactController::class,'index'])->name('contact.affiche');
 
 
 require __DIR__.'/auth.php';

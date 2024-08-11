@@ -16,6 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('numero',60);
             $table->float('total');
+            $table->string('address',150);
+            $table->string('cp',5);
+            $table->string('state',70);
+            $table->string('country',70);
             $table->timestamps();
         });
     }
